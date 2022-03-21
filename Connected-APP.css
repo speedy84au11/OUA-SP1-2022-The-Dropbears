@@ -69,7 +69,7 @@ body {
     padding: 14px;
   }
   .topnav input[type=text] {
-    border: 1px solid #ccc;  
+    border: 1px solid #ccc;
   }
 }
 .block {
@@ -96,7 +96,7 @@ body{
 	background-repeat:no-repeat;
 	background-position: right bottom;
 }
-footer 
+footer
 {
 	position: fixed;
 	position: center;
@@ -105,6 +105,22 @@ footer
 	height: 70px;
 	background-box: center white;
 }
-	hr 
+	hr
 {
 	width: 15%;margin-left: auto;margin-right: auto;
+}
+
+/* Style buttons */
+.btn {
+ background-color: DodgerBlue; /* Blue background */
+ border: none; /* Remove borders */
+ color: white; /* White text */
+ padding: 12px 16px; /* Some padding */
+ font-size: 16px; /* Set a font size */
+ cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+ background-color: RoyalBlue;
+} 
