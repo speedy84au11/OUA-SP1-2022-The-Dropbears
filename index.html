@@ -80,6 +80,14 @@ body {
   }
 }
 </style>
+function toggleMenu() {
+    var x = document.getElementById("slide-menu-container");
+    if(x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
 </head>
 <body>
 
@@ -92,7 +100,7 @@ body {
 <main></main>
 
 <?php   include("./inc/footer.php");  ?>
-
+<?php include("config/db_connect.php"); ?>
   <center>
   <!--
 <div class="topnav">
