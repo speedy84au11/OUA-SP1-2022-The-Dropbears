@@ -69,7 +69,7 @@ header {
     height: 100%;
 }
 
-.input {
+.search-container .input {
     height: 100%;
     width: 300px;
     border: none;
@@ -90,7 +90,7 @@ header {
 
 .mobile-sign-in {
     display: none;
-    padding: 4px 10px;
+    padding: 4px 8px;
     background-color: white;
     border-radius: 20px;
     border: 3px double var(--main-color);
@@ -99,6 +99,7 @@ header {
 .mobile-sign-in a {
     color: var(--main-color);
     font-family: var(--main-font);
+    font-size: .8rem;
 }
 
 /* Topbar media query */
@@ -121,7 +122,7 @@ header {
         float: right;
     }
 
-    .input {
+    .search-container .input {
         width: 250px;
     }
 }
@@ -129,8 +130,8 @@ header {
 /* Topbar media query */
 @media screen and (max-width: 400px) {
 
-    .input {
-        width: 180px;
+    .search-container .input {
+        width: 120px;
     }
 }
  
@@ -206,15 +207,12 @@ header {
 @media screen and (max-width: 400px) {
 
     .logo-bar {
-        padding: 0px 20px;
+        padding: 0px 10px;
     }
 
     .logo-bar img {
-        height: 65%
-    }
-
-    .input {
-        width: 180px;
+        height: 60%;
+        margin-top: 10px;
     }
 }
 
@@ -251,15 +249,6 @@ header {
 
 .menu-item a:hover {
     opacity: .7;
-}
-
-.hb-menu {
-    display: none;
-    cursor: pointer;
-}
-
-.hb-menu:hover {
-    opacity: .8;
 }
 
 /* Navbar media query */
@@ -546,36 +535,36 @@ main h4 {
 }
 
 input[type=text], select, textarea {
-width: 100%;
-padding: 12px;
-border: 1px solid #ccc;
-border-radius: 4px;
-resize: vertical;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
 }
 
 label {
-padding: 12px 12px 12px 0;
-display: inline-block;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
 }
 
 input[type=submit] {
-background-color: var(--main-color);
-color: white;
-padding: 12px 20px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-float: right;
+    background-color: var(--main-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
 }
 
 input[type=submit]:hover {
-opacity: .7;
+    opacity: .7;
 }
 
 .form-container {
-border-radius: 5px;
-background-color: #f2f2f2;
-padding: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
 
 .form-heading {
@@ -585,22 +574,23 @@ padding: 20px;
 }
 
 .label-column {
-float: left;
-width: 25%;
-margin-top: 6px;
+    text-align:left;
+    float: left;
+    width: 25%;
+    margin-top: 6px;
 }
 
 .input-column {
-float: left;
-width: 75%;
-margin-top: 6px;
+    float: left;
+    width: 75%;
+    margin-top: 6px;
 }
 
 /* Clear floats  */
 .row:after {
-content: "";
-display: table;
-clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* Registration form media query */
@@ -609,6 +599,31 @@ clear: both;
         width: 100%;
         margin-top: 0;
     }
+
+    .registration-wrapper {
+        width: 100%;
+    }
+
+    .label-column {
+        width: 40%;
+        font-size: .7rem; 
+    }
+    
+    .input-column {
+        width: 60%; 
+    }
+
+    .form-heading {
+        font-size: .6rem;
+    }
+}
+
+/* Registration form media query */
+@media screen and (max-width: 1100px) {
+    .registration-wrapper {
+        width: 80%;
+    }
+    
 }
 
 /* Temporary page styling */
