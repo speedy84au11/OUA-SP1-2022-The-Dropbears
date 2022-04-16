@@ -30,6 +30,47 @@ header {
     text-align: center;
 }
 
+.user-content {
+    font-family: var(--main-font);
+     
+}
+
+.user-content p {
+    color: var(--main-color);
+    font-size: 1.1rem;
+}
+
+.user-content p:hover {
+    opacity: .9;
+}
+
+.user-content:hover {
+    cursor: pointer;
+}
+
+#user-content-dropdown {
+    display: none;
+    position: absolute;
+    padding: 0px 10px;
+    top: 30px;
+    background-color: white;
+    width: 150px;
+    box-shadow: 1px 1px 1px 1px var(--main-color);
+}
+
+#user-content-dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid rgb(200, 200, 200);  
+}
+
+#user-content-dropdown li a {
+    color: var(--main-color);
+}
+
+#user-content-dropdown li:hover {
+    opacity: .75;
+}
+
 /* ======================
    Topbar styling
 =========================*/
@@ -43,22 +84,20 @@ header {
 .topbar-content {
     padding: 5px;
     height: 100%;
-    background-color: white;
     display: inline;
     float: left;
     margin: 0 2px;
     cursor: pointer;
 }
 
-.topbar-content:hover {
-    opacity: .75;
+.topbar-content p:hover {
+    opacity: .9;
 }
 
 .topbar-content p{
-    letter-spacing: .5px;
     font-family: var(--main-font);
-    font-size: .6rem; 
-    font-weight: bold;
+    font-size: .9rem; 
+    color: white;
 }
 
 .search-container {
@@ -68,6 +107,7 @@ header {
     align-items: center;
     height: 100%;
 }
+
 
 .search-container .input {
     height: 100%;
@@ -84,6 +124,7 @@ header {
     cursor: pointer;
     border-radius: 0px 3px 3px 0px;
 }
+
  .search-button i {
      color: white;
 }
@@ -94,9 +135,6 @@ header {
     background-color: white;
     border-radius: 20px;
     border: 3px double var(--main-color);
-}
-
-.mobile-sign-in a {
     color: var(--main-color);
     font-family: var(--main-font);
     font-size: .8rem;
@@ -108,9 +146,6 @@ header {
     .top-bar {
        min-height: 35px;
        padding: 3px 10px;
-    }
-    .topbar-content {
-        display: none;
     }
 
     .search-container {
@@ -124,6 +159,15 @@ header {
 
     .search-container .input {
         width: 250px;
+    }
+
+    .topbar-content {
+        float: right;  
+    }
+
+    #user-content-dropdown {
+       right: 6px;
+       top: 35px;
     }
 }
 
@@ -154,17 +198,18 @@ header {
 .sign-in {
     position: absolute;
     right: 30px;
-    top: 40px;
+    top: 50px;
     padding: 10px 22px;
     background-color: var(--main-color);
     border-radius: 20px;
     border: 3px double white;
     cursor: pointer;
-}
-
-.sign-in a {
     color: white;
     font-family: var(--main-font);
+}
+
+.logo-bar button {
+    font-weight: bold;
 }
 
 .sign-in:hover {
@@ -251,6 +296,7 @@ header {
     opacity: .7;
 }
 
+
 /* Navbar media query */
 @media screen and (max-width: 768px) {
 
@@ -317,6 +363,80 @@ header {
 .mobile-menu-item:hover {
     opacity: .8;
 }
+
+/* login tab styling */
+
+#sign-in-tab {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    left: 0vw;
+    top: 0px;
+    position: absolute;
+    background-color: rgba(64, 64, 64, 0.5); 
+}
+
+.cross {
+    float: right;
+    cursor:pointer;
+}
+
+.cross:hover {
+    opacity: .7;
+}
+
+.sign-in-tab-content {
+    height: 50vh;
+    width: 50vh;
+    border: 1px solid gray;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px var(--main-color);
+    font-family: var(--main-font);
+}
+
+#sign-in-tab h4 {
+    text-transform: uppercase;
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    color: var(--main-color);
+    border-bottom: solid var(--main-color) 1px;
+    padding-bottom: 30px;
+}
+
+.email, .password {
+    padding: 40px 20px 0px 20px;
+}
+
+#sign-in-tab input {
+    border: none;
+    border-bottom: solid 1px var(--main-color);
+}
+
+#sign-in-tab button {
+    width: 90%;
+    height: 45px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.5em;
+    margin-top: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.sign-in-tab-content p {
+    padding: 30px;
+    float: right;
+    color: gray;
+}
+
+#sign-in-tab button:hover {
+    opacity: .7;
+}
+
 
 /* =======================
    Home page main styling
@@ -395,6 +515,80 @@ main h4 {
 }
 
 /*=======================
+  Service Section 
+=========================*/
+
+.service {
+    padding: 100px;
+}
+
+.service-wrapper {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.service-content {
+    background-color: white;
+    margin: 20px;
+    padding: 60px 5px 0px 5px;
+    width: 45%;
+    box-shadow: 1px 1px 1px 1px var(--main-color);  
+}
+
+.service-content iframe{
+    width: 90%;
+    height: 400px;
+}
+
+.service-type {
+    padding: 25px 0 0 0;
+    font-family: var(--main-font);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.service-link:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+/* service stlyling media query */
+
+@media screen and (max-width: 1100px) {
+
+    .service-wrapper {
+        flex-direction: column;
+    }
+
+    .service-content {
+        width: 80%;
+       
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .service-content {
+        width: 90%;
+    }
+
+    .service {
+        padding: 20px;
+    } 
+}
+
+@media screen and (max-width: 700px) {
+    .service-content {
+        width: 95%;
+       
+    } 
+}
+
+
+
+/*=======================
   Testamonial Section 
 =========================*/
 
@@ -406,6 +600,7 @@ main h4 {
 .testimonial-wrapper {
     margin-top: 60px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     font-family: var(--main-font);
@@ -430,14 +625,16 @@ main h4 {
 }
 
 .test-name {
-    width: 200px;
+    width: 90%;
     padding: 4px 14px;
     background-color: var(--main-color);
     font-family: var(--main-font);
-    border-radius: 20px;
+    border-radius: 5px;
     border: 3px double white;
     font-size: 1.2rem;
+    color: white;
 }
+
 
 .test-location {
     font-size: .9rem;
@@ -468,11 +665,6 @@ main h4 {
 
     .test-text {
         width: 70%;
-    }
-
-    .test-name {
-        width: 150px;
-        font-size: 1rem;
     }
 
     .testimonial-content {
@@ -520,7 +712,6 @@ main h4 {
     }
 }
 
-
 /*==========================
   Registration form styling
     ========================*/
@@ -534,7 +725,19 @@ main h4 {
     width: 50%;
 }
 
-input[type=text], select, textarea {
+.error {
+    color: red;
+    font-size: 11px;
+    float: right;
+}
+
+.success {
+    font-size: 17px;
+    margin-top: 20px;
+    color: var(--main-color);
+}
+
+input[type=text], input[type=password], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -622,8 +825,7 @@ input[type=submit]:hover {
 @media screen and (max-width: 1100px) {
     .registration-wrapper {
         width: 80%;
-    }
-    
+    } 
 }
 
 /* Temporary page styling */

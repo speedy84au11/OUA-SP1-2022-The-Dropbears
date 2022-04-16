@@ -1,1 +1,1 @@
-<?php include("config/db_connect.php"); ?>
+<?php include("./config/db_connect.php"); ?>
