@@ -2,87 +2,118 @@
 
 <main>
 
-<?php
-            if(!isset($_SESSION['name'])) { 
-                ?>
-                    <!-- Content for the help buttons -->
-                    <section class="objective-content">
-                        <p class="small-heading">Our Service</p>
-                        <h4>Our Main Focus</h4>
+    <?php
+        if(!isset($_SESSION['name'])) { 
+            ?>
+                <!-- Content for the help buttons -->
+                <section class="objective-content">
+                    <p class="small-heading">Our Service</p>
+                    <h4>Our Main Focus</h4>
 
-                        <div class="help-buttons-wrapper">
-                            <div class="can-content">
-                                <a href="user-register.php">I Need Help</a>
-                                <p>Connecting people in times of need to services providing help</p>
-                            </div>
-                            <div class="will-content">
-                                <a href="service-register.php">I Can Help</a>
-                                <p>Connecting services providing help to people in times of need</p>
-                            </div>
+                    <div class="help-buttons-wrapper">
+                        <div class="can-content">
+                            <a href="user-register.php">I Need Help</a>
+                            <p>Connecting people in times of need to services providing help</p>
                         </div>
-                    </section>
-                 <?php
-            }
-        ?>
-
-
-        <!-- Content for the services section -->
-        <section class="service">
-            <p class="small-heading">Services</p>
-            <h4>Services we have on board</h4>
-
-            <!-- testimonal wrapper -->
-            <div class="service-wrapper">
-
-            <!-- Database querry which retreives data from services table -->
+                        <div class="will-content">
+                            <a href="service-register.php">I Can Help</a>
+                            <p>Connecting services providing help to people in times of need</p>
+                        </div>
+                    </div>
+                </section>
             <?php
+        }
+    ?>
 
-            $sql ='SELECT * FROM services';
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $services = $stmt->fetchAll();
+    <!-- Content for the services section -->
+    <section class="service">
+        <p class="small-heading">Services</p>
+        <h4>Services we have on board</h4>
 
-
-            foreach($services as $service) {
-                $id = $service['id'];
-                $name = $service['name'];
-                $phone = $service['phone'];
-                $email = $service['email'];
-                $address = $service['address'];
-                $suburb = $service['suburb'];
-                $postcode = $service['postcode'];
-                $state = $service['state'];
-                $country = $service['country'];
-                $hours = $service['operating_hours'];
-                $website = $service['website'];
-                $supportType = $service['support_type'];
-                ?>
-                
-                <!-- Individual testimonal cards -->
-                <div class="service-content">
-                    <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
-                    <p class="service-type" style="font-size: 1.2rem">Service Type</p>
-                    <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
-                    <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
-                    <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
-                </div> <!-- Individual testimonal cards -->
+        <!-- service wrapper -->
+        <div class="service-wrapper">
   
+        <?php
+            //Database querry which retreives data from services table
+            if(isset($_POST['submit'])) {
+
+                // Create query using search input
+                $search = $_POST['search'];
+                $sql = $conn->prepare('SELECT * FROM services WHERE name LIKE :keyword OR support_type LIKE :keyword OR state LIKE :keyword OR suburb LIKE :keyword');
+                $sql->bindValue(':keyword' , '%' . $search . '%', PDO::PARAM_STR);
+                $sql->execute();
+                $services = $sql->fetchAll();
+                $rows = $sql->rowCount();
+
+                    // If there are results display them
+                if($rows != 0) {
+                    foreach($services as $service) {
+                        $id = $service['id'];
+                        $name = $service['name'];
+                        $phone = $service['phone'];
+                        $email = $service['email'];
+                        $address = $service['address'];
+                        $suburb = $service['suburb'];
+                        $postcode = $service['postcode'];
+                        $state = $service['state'];
+                        $country = $service['country'];
+                        $hours = $service['operating_hours'];
+                        $website = $service['website'];
+                        $supportType = $service['support_type'];
+                        ?>
+                        
+                        <!-- Individual service cards -->
+                        <div class="service-content">
+                            <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
+                            <p class="service-type" style="font-size: 1.2rem">Service Type</p>
+                            <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                            <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
+                            <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                        </div> <!-- Individual service cards --> <?php
+                    }
+                } else {
+                    echo '<h4 class="small-heading">No results found for your match!</h4>';
+                }
+            } else {
+
+                // Create query to select all data in the services table
+                $sql ='SELECT * FROM services';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $services = $stmt->fetchAll();
                 
-                 <?php
+                $count = 0;
+                foreach($services as $service) {
+                    $id = $service['id'];
+                    $name = $service['name'];
+                    $phone = $service['phone'];
+                    $email = $service['email'];
+                    $address = $service['address'];
+                    $suburb = $service['suburb'];
+                    $postcode = $service['postcode'];
+                    $state = $service['state'];
+                    $country = $service['country'];
+                    $hours = $service['operating_hours'];
+                    $website = $service['website'];
+                    $supportType = $service['support_type'];
+                    ?>
+                    
+                    <!-- Individual service cards -->
+                    <div class="service-content">
+                        <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
+                        <p class="service-type" style="font-size: 1.2rem">Service Type</p>
+                        <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                        <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
+                        <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                    </div> <!-- Individual service cards --> <?php
+
+                    if(++$count == 6) {
+                        break;
+                    }
+                }
             }?>
-            </div><!-- testimonal wrapper -->
-        </section>
-           
-            
-
-
-
-
-
-
-
-
-    
+        </div><!-- services wrapper -->
+    </section>
 
     <!-- Content for the testimonial section -->
     <section class="testimonial">

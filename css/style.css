@@ -389,7 +389,7 @@ header {
 }
 
 .sign-in-tab-content {
-    height: 50vh;
+    height: auto;
     width: 50vh;
     border: 1px solid gray;
     padding: 20px;

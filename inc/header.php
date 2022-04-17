@@ -71,9 +71,9 @@ if (isset($_POST['submit'])) {
             </div>
 
             <!--Search Form -->
-            <form class="search-container" action="">
-                <input class="input" type="text" placeholder="Search Here....">
-                <button class="search-button"><i class="fa fa-search"></i></button>
+            <form class="search-container" action="" method="post">
+                <input class="input" type="text" name="search" placeholder="Search Here....">
+                <button class="search-button" name="submit"><i class="fa fa-search"></i></button>
             </form>
 
             <?php
