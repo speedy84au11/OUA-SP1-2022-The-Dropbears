@@ -51,85 +51,105 @@ if (isset($_POST['submit'])) {
     <header>
 
         <!-- Top bar content -->
-        <div class="top-bar">
+        <div id="top-bar">
 
-            <!-- Language Selector -->
-            <div class="topbar-content">
+            <!-- Color selectors -->
+            <div id="toggle-colors" onclick="openColorSelector()">Change Color</div>
+            <ul id="colors">
+                <li id="default" onclick="toggleDefault()"><p>Default</p></li>
+                <li id="green" onclick="toggleGreen()"><p>Green</p></li>
+                <li id="red" onclick="toggleRed()"><p>Red</p></li>
+                <li id="black" onclick="toggleBlack()"><p>Black</p></li>
+                <li id="orange" onclick="toggleOrange()"><p>Orange</p></li>
+                <li id="purple" onclick="togglePurple()"><p>Purple</p></li>
+            </ul>
             
             <!-- If seesion is started display user information. -->
+            <div class="user-content">
             <?php
                 if(isset($_SESSION['name'])) { ?>
-                    <div class="user-content">
-                        <p onclick="openUserContent()"> <?php echo ('Welcome ' . $_SESSION['name']); ?></p>
-                        <ul id="user-content-dropdown">
-                            <li><a href="">My Account</a></li>
-                            <li><a href="">Edit Detail</a></li>
-                            <li><a href="logout.php">Log Out</a></li>
-                        </ul>
-                    </div> <?php
-                }?>
-            </div>
-
-            <!--Search Form -->
-            <form class="search-container" action="" method="post">
-                <input class="input" type="text" name="search" placeholder="Search Here....">
-                <button class="search-button" name="submit"><i class="fa fa-search"></i></button>
-            </form>
-
-            <?php
-                if(!isset($_SESSION['name'])) { ?>
-
-                    <!-- Mobilesign in button -->
-                    <button class="mobile-sign-in" onclick="openLogin()">Sign In</button> <?php
-                }
-            ?>
+                    
+                        <p> <?php echo ('Welcome ') ?>  <span><?php echo $_SESSION['name']; ?></span></p>
+                     <?php
+                } else { ?>
+                    <p> <?php echo ('Welcome to The Connected App '); ?></p> <?php
+                } ?>
+                </div>
         </div> <!-- top-bar -->
-
 
         <!-- Nav bar -->
         <nav>
             <!--Logo bar -->
             <div class="logo-bar">
-
-            <!-- Logo image -->
-            <img src="./img/heart-logo.jpg" alt="">
-
-            <!-- If seesion is not started display sign in button. -->
-            <?php
-                if(!isset($_SESSION['name'])) { ?>
-
-                    <!-- Main sign in button -->
-                    <button class="sign-in" onclick="openLogin()">Sign In</button> <?php
-                }
-            ?>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" onclick="toggleMenu()">
-                <svg class="mobile-menu" viewBox="0 0 100 80" width="30" height="30">
-                    <rect width="100" height="12" style="fill:#0B74BD"></rect>
-                    <rect y="30" width="100" height="12" style="fill:#0B74BD"></rect>
-                    <rect y="60" width="100" height="12" style="fill:#0B74BD"></rect>
-                </svg>
-            </div> <!-- Mobile Menu -->
-
+                <!-- Logo image -->
+                <a href="index.php"> <img src="./img/banner1.jpg" alt=""></a>
             </div> <!--logo-bar -->
 
             <!--Menu bar-->
-            <ul class="menu-bar">
+            <ul id="menu-bar">
                 <!-- Menu bar links -->
                 <li class="menu-item"><a href="index.php">Home</a></li>
                 <li class="menu-item"><a href="services.php">Services</a></li>
                 <li class="menu-item"><a href="shop.php">Shop</a></li>
                 <li class="menu-item"><a href="about.php">About</a></li>
-                <li class="menu-item"><a href="forum.php">Forum</a></li>
                 <li class="menu-item"><a href="contact.php">Contact</a></li>
-            </ul> 
-        </nav>   
+            
+                 <!-- If seesion is not started display sign in button. -->
+            <?php
+                if(!isset($_SESSION['name'])) { ?>
 
+                    <!-- Sign in button -->
+                    <button class="sign-in" onclick="openLogin()">Sign In</button> <?php
+                } else { ?>
+                    <!-- Sign out in button -->
+                      <a href="logout.php"><button class="sign-in">Sign Out</button></a> <?php
+                }
+            ?>
+
+                <!-- Search Button -->
+                <button class="sign-in" onclick="toggleSearch()"><i class="fa fa-search"></i></button>
+
+                
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" onclick="toggleMenu()">
+                    <svg class="mobile-menu" viewBox="0 0 100 80" width="40" height="45">
+                        <rect width="100" height="12"></rect>
+                        <rect y="30" width="100" height="12"></rect>
+                        <rect y="60" width="100" height="12"></rect>
+                    </svg>
+                </div> <!-- Mobile Menu -->
+            </ul> 
+        </nav>  
+        
+        <!--Search Form -->
+        <div id="search-wrapper">
+            
+            <!-- Close botton for search bar -->
+            <div class="close-search" onclick="closeSearch()">
+                <svg class="cross"  height="18" width="18">
+                    <line x1="0" y1="0" x2="18" y2="18" style="stroke-width:3" />
+                    <line x1="18" y1="0" x2="0" y2="18" style="stroke-width:3" />
+                </svg>
+            </div>
+
+            <!-- Form bar search bar -->
+            <form class="search-container" action="" method="post">
+                <input class="input" type="text" name="search" placeholder="Search Here....">
+                <button class="search-button" name="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+            
         <!-- mobile side menu -->
         <div id="mobile-menu-container" >
             <ul class="mobile-menu-content">
-                <li class="mobile-menu-item close"><a href="">Close</a></li>
+
+                <!-- Close botton for mobile menu bar -->
+                <div class="close-menu" onclick="closeMenu()">
+                    <svg class="cross"  height="18" width="18">
+                        <line x1="0" y1="0" x2="18" y2="18" style="stroke-width:3" />
+                        <line x1="18" y1="0" x2="0" y2="18" style="stroke-width:3" />
+                    </svg>
+                </div>
 
                 <!-- Clear floated element -->
                 <div class="clearfix"></div>
@@ -140,7 +160,7 @@ if (isset($_POST['submit'])) {
                 <li class="mobile-menu-item"><a href="shop.php">Shop</a></li>
                 <li class="mobile-menu-item"><a href="about.php">About</a></li>
                 <li class="mobile-menu-item"><a href="forum.php">Forum</a></li>
-                <li class="mobile-menu-item"><a href="contact.php">Contact</a></li>
+                <li class="mobile-menu-item"><a href="contact.php">Contact</a></li>                
             </ul>
         </div> <!-- mobile side menu -->
 
@@ -149,8 +169,8 @@ if (isset($_POST['submit'])) {
             <div class="sign-in-tab-content">
             <div class="close-login" onclick="closeLogin()">
                 <svg class="cross"  height="18" width="18">
-                    <line x1="0" y1="0" x2="18" y2="18" style="stroke:#0B74BD;stroke-width:3" />
-                    <line x1="18" y1="0" x2="0" y2="18" style="stroke:#0B74BD;stroke-width:3" />
+                    <line x1="0" y1="0" x2="18" y2="18" style="stroke-width:3" />
+                    <line x1="18" y1="0" x2="0" y2="18" style="stroke-width:3" />
                 </svg>
             </div>
             
@@ -171,4 +191,6 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div> <!-- Login tab -->
+
+        <button onclick="backToTop()" id="back-to-top">Top</button>
     </header>

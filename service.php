@@ -4,63 +4,72 @@ include("./inc/header.php");
 
 $id = $_GET['id'];
 ?>
-<section class="temporary" style="padding-top: 35px"> 
+<section class="service-page-wrapper"> 
 
-    <?php
-    
-        $sql = "SELECT * FROM services WHERE id='$id'";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $services = $stmt->fetchAll();
+   <?php
+   
+      $sql = "SELECT * FROM services WHERE id='$id'";
+      $stmt = $conn->prepare($sql);
+      $stmt->execute();
+      $services = $stmt->fetchAll();
 
-        foreach($services as $service) {
-            $id = $service['id'];
-            echo $id . "<br>";
+      foreach($services as $service) {
+         $id = $service['id'];
+         $name = $service['name'];
+         $phone = $service['phone'];
+         $email = $service['email'];
+         $website = $service['website'];
+         $address = $service['address'];
+         $suburb = $service['suburb'];
+         $postcode = $service['postcode'];
+         $state = $service['state'];
+         $country = $service['country']; 
+         $daysOpen = $service['days_open'];
+         $operatingHours = $service['operating_hours'];
+         $supportType = $service['support_type'];
+         $serviceEligibility = $service['service_eligibility'];
+         $phoneRechargeAvailability = $service['phone_recharge_availability'];
+         $servicesAvailable= $service['services_available'];
+         $img = $service['img'];
+      ?>
+         
+         <div class="service-page-content">
 
-            $name = $service['name'];
-            echo $name . "<br>";
+               <div class="service-heading"><?php echo $name?></div>
+               <img src="img/<?php echo $img; ?>" title="description"></img>
+               
+               <article class="service-article">
+                  <div class="article-item"><p>Address:</p></div>
+                  <div class="article-content"><p><?php echo $address . " " . $suburb . ", " .$state; ?></p></div>  
+               </article> 
+               
+               <article class="service-article">
+                  <div class="article-item"><p>Phone:</p></div>
+                  <div class="article-content"><p><?php echo $phone; ?></p></div>  
+               </article>  
+               
+               <article class="service-article">
+                  <div class="article-item"><p>Email:</p></div>
+                  <div class="article-content"><p><?php echo $email; ?></p></div>  
+               </article>  
 
-            $phone = $service['phone'];
-            echo $phone . "<br>";
+               <article class="service-article">
+                  <div class="article-item"><p>Hours:</p></div>
+                  <div class="article-content"><p><?php echo $daysOpen . " " . $operatingHours; ?></p></div>  
+               </article> 
 
-            $email = $service['email'];
-            echo $email . "<br>";
+               <article class="service-article">
+                  <div class="article-item"><p>Type:</p></div>
+                  <div class="article-content"><p><?php echo $supportType; ?></p></div>  
+               </article> 
 
-            $website = $service['website'];
-            echo $website . "<br>";
-
-            $address = $service['address'];
-            echo $address . "<br>";
-
-            
-            $suburb = $service['suburb'];
-            echo $suburb. "<br>";
-
-            $postcode = $service['postcode'];
-            echo $postcode . "<br>";
-
-            $state = $service['state'];
-            echo $state . "<br>";
-
-            $country = $service['country'];
-            echo $country. "<br>";
-
-            $hours = $service['operating_hours'];
-            echo $hours . "<br>";
-
-            $supportType = $service['support_type'];
-            echo $supportType . "<br>";
-
-            $serviceEligibility = $service['service_eligibility'];
-            echo $serviceEligibility . "<br>";
-
-            $phoneRechargeAvailability = $service['phone_recharge_availability'];
-            echo $phoneRechargeAvailability . "<br>";
-
-            $servicesAvailable = $service['services_available'];
-            echo $servicesAvailable . "<br>";
-        }
-    ?>
+               <article class="service-article">
+                  <div class="article-item"><p>Services:</p></div>
+                  <div class="article-content"><p><?php echo $servicesAvailable; ?></p></div>  
+               </article>                             
+         </div> <!-- Individual service cards --> <?php
+         }
+   ?>
 </section>
 
 <?php   include("./inc/footer.php");  ?>

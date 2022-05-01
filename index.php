@@ -13,11 +13,11 @@
                     <div class="help-buttons-wrapper">
                         <div class="can-content">
                             <a href="user-register.php">I Need Help</a>
-                            <p>Connecting people in times of need to services providing help</p>
+                            <p>Connecting people</p>
                         </div>
                         <div class="will-content">
-                            <a href="service-register.php">I Can Help</a>
-                            <p>Connecting services providing help to people in times of need</p>
+                            <a href="service-register.php">I Will Help</a>
+                            <p>Connecting services</p>
                         </div>
                     </div>
                 </section>
@@ -60,16 +60,20 @@
                         $hours = $service['operating_hours'];
                         $website = $service['website'];
                         $supportType = $service['support_type'];
+                        $img = $service['img'];
                         ?>
                         
                         <!-- Individual service cards -->
-                        <div class="service-content">
-                            <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
-                            <p class="service-type" style="font-size: 1.2rem">Service Type</p>
-                            <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
-                            <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
-                            <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
-                        </div> <!-- Individual service cards --> <?php
+                    <div class="service-content">
+                        <img src="img/<?php echo $img; ?>" title="description"></img>
+                        <div class="service-name-wrapper">
+                            <p class="service-name service-link" ><?php echo $name?></p>
+                        </div>
+                        <p class="service-type" style="font-size: 1.2rem">Service Type</p>
+                        <p class="service-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                        <a href="service.php?id=<?php echo $id; ?> "><button>View Service</button></a>
+                        <p class="service-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                    </div> <!-- Individual service cards --> <?php
                     }
                 } else {
                     echo '<h4 class="small-heading">No results found for your match!</h4>';
@@ -96,15 +100,19 @@
                     $hours = $service['operating_hours'];
                     $website = $service['website'];
                     $supportType = $service['support_type'];
+                    $img = $service['img'];
                     ?>
                     
                     <!-- Individual service cards -->
                     <div class="service-content">
-                        <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
+                        <img src="img/<?php echo $img; ?>" title="description"></img>
+                        <div class="service-name-wrapper">
+                            <p class="service-name service-link" ><?php echo $name?></p>
+                        </div>
                         <p class="service-type" style="font-size: 1.2rem">Service Type</p>
-                        <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
-                        <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
-                        <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                        <p class="service-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                        <a href="service.php?id=<?php echo $id; ?> "><button>View Service</button></a>
+                        <p class="service-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
                     </div> <!-- Individual service cards --> <?php
 
                     if(++$count == 6) {
@@ -157,16 +165,3 @@
 </section>
 </main>
 <?php   include("./inc/footer.php");  ?>
-
-
-
-
-
-
-
-
-
-
-
-
-

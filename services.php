@@ -36,15 +36,18 @@
                         $hours = $service['operating_hours'];
                         $website = $service['website'];
                         $supportType = $service['support_type'];
+                        $img = $service['img'];
                         ?>
                         
-                        <!-- Individual service cards -->
                         <div class="service-content">
-                            <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
+                            <img src="img/<?php echo $img; ?>" title="description"></img>
+                            <div class="service-name-wrapper">
+                                 <p class="service-name service-link" ><?php echo $name?></p>
+                            </div>
                             <p class="service-type" style="font-size: 1.2rem">Service Type</p>
-                            <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
-                            <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
-                            <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                            <p class="service-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                            <a href="service.php?id=<?php echo $id; ?> "><button>View Service</button></a>
+                            <p class="service-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
                         </div> <!-- Individual service cards --> <?php
                     }
                 } else {
@@ -72,15 +75,19 @@
                     $hours = $service['operating_hours'];
                     $website = $service['website'];
                     $supportType = $service['support_type'];
+                    $img = $service['img'];
                     ?>
                     
                     <!-- Individual service cards -->
                     <div class="service-content">
-                        <iframe src=" <?php echo $website; ?>"  title="description"></iframe>
+                        <img src="img/<?php echo $img; ?>" title="description"></img>
+                        <div class="service-name-wrapper">
+                            <p class="service-name service-link" ><?php echo $name?></p>
+                        </div>
                         <p class="service-type" style="font-size: 1.2rem">Service Type</p>
-                        <p class="test-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
-                        <a href="service.php?id=<?php echo $id; ?> " class="test-name service-link" ><?php echo $name?></a>
-                        <p class="test-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
+                        <p class="service-text" style="font-size: .8rem"><?php echo ($supportType); ?></p>
+                        <a href="service.php?id=<?php echo $id; ?> "><button>View Service</button></a>
+                        <p class="service-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
                     </div> <!-- Individual service cards --> <?php
 
                     if(++$count == 10) {
