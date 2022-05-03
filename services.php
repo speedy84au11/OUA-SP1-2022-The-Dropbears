@@ -36,11 +36,11 @@
                         $hours = $service['operating_hours'];
                         $website = $service['website'];
                         $supportType = $service['support_type'];
-                        $img = $service['img'];
+                        $img = $service['img1'];
                         ?>
                         
                         <div class="service-content">
-                            <img src="img/<?php echo $img; ?>" title="description"></img>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
                             <div class="service-name-wrapper">
                                  <p class="service-name service-link" ><?php echo $name?></p>
                             </div>
@@ -80,7 +80,7 @@
                     
                     <!-- Individual service cards -->
                     <div class="service-content">
-                        <img src="img/<?php echo $img; ?>" title="description"></img>
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
                         <div class="service-name-wrapper">
                             <p class="service-name service-link" ><?php echo $name?></p>
                         </div>

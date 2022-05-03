@@ -2,7 +2,7 @@
 include("./inc/header.php");  
 
 
-error_reporting(0);
+//error_reporting(0);
 
 session_start();
 
@@ -27,6 +27,7 @@ if(isset($_POST['submit'])) {
     $s_postcode = $_POST['s_postcode'];
     $s_state = $_POST['s_state'];
     $s_country = $_POST['s_country'];
+    $s_daysOpen = $_POST['s_days-open'];
     $s_operatingHours = $_POST['s_operating-hours'];
     $s_supportType = $_POST['s_support-type'];
     $s_serviceEligibility = $_POST['s_service-eligibility'];
@@ -34,7 +35,7 @@ if(isset($_POST['submit'])) {
     $s_servicesAvailable = $_POST['s_services-available'];
     $s_password = sha1($_POST['s_password']);
     $s_confirmPassword = sha1($_POST['s_confirm-password']);
-    $s_img = $_POST['s_img'];
+    $s_img = $_POST['s_image'];
     
 
     if ($s_password == $s_confirmPassword) {
@@ -54,19 +55,20 @@ if(isset($_POST['submit'])) {
 
 		if ($row == false) {
              
-			$sql = "INSERT INTO services (name, phone, email, website, address, suburb, postcode, state, country, operating_hours, 
-                                        support_type, service_eligibility,  phone_recharge_availability, services_available, password) 
-                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO services (name, phone, email, website, address, suburb, postcode, state, country, days_open, operating_hours, 
+                                        support_type, service_eligibility,  phone_recharge_availability, services_available, password, img) 
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
 
             $result = $stmt->execute([$s_name, $s_phone, $s_email, $s_website, $s_address, $s_suburb, $s_postcode, $s_state, $s_country, 
-                                     $s_operatingHours, $s_supportType, $s_serviceEligibility, $s_phoneRechargeAvailability, $s_servicesAvailable, $s_password]);
+                                     $s_daysOpen, $s_operatingHours, $s_supportType, $s_serviceEligibility, $s_phoneRechargeAvailability, 
+                                     $s_servicesAvailable, $s_password, $s_img]);
         
 			if ($result) {
 				$s_success = "Registration Completed Successfully";
 
-				$s_name = $s_phone = $s_email = $s_website = $s_address = $s_suburb = $s_postcode = $s_state = $s_country = $s_operatingHours = $s_supportType = $s_serviceEligibility = $s_phoneRechargeAvailability = $s_servicesAvailable = $s_password = "";
+				$s_name = $s_phone = $s_email = $s_website = $s_address = $s_suburb = $s_postcode = $s_state = $s_country = $s_daysOpen = $s_operatingHours = $s_supportType = $s_serviceEligibility = $s_phoneRechargeAvailability = $s_servicesAvailable = $s_password = $s_img = "";
 				
                 $_POST['s_password'] = "";
 				$_POST['s_confirm-password'] = "";
@@ -203,10 +205,20 @@ if(isset($_POST['submit'])) {
                         </div>
                     </div>
 
+                    <!-- Days open input -->
+                    <div class="row">
+                        <div class="label-column">
+                            <label for="s_days_open">Days Open</label>
+                        </div>
+                        <div class="input-column">
+                            <input type="text" id="s_days-open" name="s_days-open" placeholder="Your days open.." value="<?php echo $s_daysOpen; ?>" required>
+                        </div>
+                    </div>
+
                     <!-- Operating hours input -->
                     <div class="row">
                         <div class="label-column">
-                            <label for="s_operating-hours">Operating hours</label>
+                            <label for="operating_hours">Operating hours</label>
                         </div>
                         <div class="input-column">
                             <input type="text" id="s_operating-hours" name="s_operating-hours" placeholder="Your operating hours.." value="<?php echo $s_operatingHours; ?>" required>
@@ -275,8 +287,17 @@ if(isset($_POST['submit'])) {
                         <span class="error"><?php echo $s_passwordError; ?></span>
                     </div>
 
-                   
+                    <!-- image input -->
+                    <div class="row">
+                        <div class="label-column">
+                            <label for="s_image">Image</label>
+                        </div>
+                        <div class="input-column">
+                            <input type="file" id="s_image" name="s_image" placeholder="Your image.." value="<?php echo $_POST['s_image']; ?>" required>
+                        </div>
+                    </div>
 
+    
                     <br>
                     <div class="row">
                         <input type="submit" value="submit" name="submit">

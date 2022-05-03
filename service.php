@@ -36,7 +36,7 @@ $id = $_GET['id'];
          <div class="service-page-content">
 
                <div class="service-heading"><?php echo $name?></div>
-               <img src="img/<?php echo $img; ?>" title="description"></img>
+               <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
                
                <article class="service-article">
                   <div class="article-item"><p>Address:</p></div>
