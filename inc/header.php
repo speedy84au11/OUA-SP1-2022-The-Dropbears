@@ -6,36 +6,55 @@ session_start();
 
 error_reporting(0);
 
-$currentUser ="";
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['login-submit'])) {
 	$email = $_POST['email'];
 	$password = sha1($_POST['password']);
 
-	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+	$s_sql = "SELECT * FROM services WHERE email='$email' AND password='$password'";
 
 	//Prepare the SQL statement.
     $stmt = $conn->prepare($sql);
+    $s_stmt = $conn->prepare($s_sql);
 
     //Bind our email value to the :email parameter.
     $stmt->bindValue(':email', $email);
+    $s_stmt->bindValue(':email', $email);
 
     //Execute the statement.
     $stmt->execute();
+    $s_stmt->execute();
 
     //Fetch the row / result.
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $s_row = $s_stmt->fetch(PDO::FETCH_ASSOC);
 
 
     if ($row == true) {
-		$_SESSION['name'] = $row['fname'];
-        $currentUser = $_SESSION['name'];  
+		$_SESSION['u_id'] = $row['id'];
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['mname'] = $row['mname'];
+        $_SESSION['lname'] = $row['lname'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['img'] = $row['img'];
+
+         
+	} else if ($s_row == true) {
+		$_SESSION['s_id'] = $s_row['id'];
+        $_SESSION['name'] = $s_row['name'];
+        $_SESSION['email'] = $s_row['email'];
+        $_SESSION['phone'] = $s_row['phone'];
+        $_SESSION['img'] = $s_row['img'];
+        $_SESSION['website'] = $s_row['website'];
+
 	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
+        echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
+    }
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +66,10 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="./css/style.css">
     <title>The Connected App</title>
 </head>
-<body>
+<body onload=maintainColor()>
     <header>
+
+    
 
         <!-- Top bar content -->
         <div id="top-bar">
@@ -64,17 +85,42 @@ if (isset($_POST['submit'])) {
                 <li id="purple" onclick="togglePurple()"><p>Purple</p></li>
             </ul>
             
-            <!-- If seesion is started display user information. -->
+            <!-- If seesion is started display user or service information. -->
             <div class="user-content">
             <?php
-                if(isset($_SESSION['name'])) { ?>
-                    
-                        <p> <?php echo ('Welcome ') ?>  <span><?php echo $_SESSION['name']; ?></span></p>
-                     <?php
-                } else { ?>
-                    <p> <?php echo ('Welcome to The Connected App '); ?></p> <?php
+                if(isset($_SESSION['u_id'])) { 
+                    ?> <p class="welcome-message" onclick=openDigitalId()> <?php echo ('Logged in as ') ?>  <span><?php echo $_SESSION['fname'];?></span></p> <?php
+                } else if(isset($_SESSION['s_id'])) {  
+                    ?> <p class="welcome-message" onclick=openDigitalId()> <?php echo ('Logged in as') ?>  <span><?php echo $_SESSION['name'];?></span></p> <?php
+                } else { 
+                    ?> <p> <?php echo ('Welcome to The Connected App '); ?></p> <?php
                 } ?>
                 </div>
+
+                <div id="digital-id">
+                    <div class="digital-id-content">
+                        <p onclick=closeDigitalId() class="close">Close</p>
+                        
+                        <p class="d-id">Digital Id</p>
+                        <div class="clearfix"></div>
+                    <?php
+                        if(isset($_SESSION['u_id'])) { ?>
+                            <p class="d-id-name"> <?php echo $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
+                            <p> <?php echo "Service Id: " . $_SESSION['u_id']; ?></p> 
+                            <p> <?php echo "Email: " . $_SESSION['email']; ?></p> <?php
+                        } else if (isset($_SESSION['s_id'])) { ?>
+                            <p class="d-id-name"> <?php echo $_SESSION['name']; ?></p>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
+                            <p> <?php echo "Service Id: " . $_SESSION['s_id']; ?></p> 
+                            <p> <?php echo "Phone number: " . $_SESSION['phone']; ?></p> 
+                            <p> <?php echo "Email: " . $_SESSION['email']; ?></p> 
+                            <p> <?php echo "Website: " . $_SESSION['website']; ?></p> <?php
+                        } ?>
+                    </div>
+                </div>
+
+
         </div> <!-- top-bar -->
 
         <!-- Nav bar -->
@@ -96,7 +142,7 @@ if (isset($_POST['submit'])) {
             
                  <!-- If seesion is not started display sign in button. -->
             <?php
-                if(!isset($_SESSION['name'])) { ?>
+                if(!(isset($_SESSION["u_id"]) || isset($_SESSION["s_id"]))) { ?>
 
                     <!-- Sign in button -->
                     <button class="sign-in" onclick="openLogin()">Sign In</button> <?php
@@ -135,7 +181,7 @@ if (isset($_POST['submit'])) {
             <!-- Form bar search bar -->
             <form class="search-container" action="" method="post">
                 <input class="input" type="text" name="search" placeholder="Search Here....">
-                <button class="search-button" name="submit"><i class="fa fa-search"></i></button>
+                <button class="search-button" name="search-submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
             
@@ -186,7 +232,7 @@ if (isset($_POST['submit'])) {
                         <input type="text" id="password" name="password" placeholder="Your Password">
                     </div>
                     
-                    <button type="submit"  name="submit">Sign In</button>
+                    <button type="submit"  name="login-submit">Sign In</button>
                     <p>Forgot Password?</p>
                 </form>
             </div>

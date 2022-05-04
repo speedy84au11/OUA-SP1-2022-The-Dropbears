@@ -32,6 +32,7 @@ if(isset($_POST['submit'])) {
     $state = $_POST['state'];
     $country = $_POST['country'];
     $centerlinkCRN = $_POST['centerlink-crn'];
+    $img = $_POST['img'];
     
 
     if ($password == $confirmPassword) {
@@ -53,16 +54,16 @@ if(isset($_POST['submit'])) {
 
 		if ($row == false) {
 			$sql = "INSERT INTO users (fname, mname, lname, email, password, gender, dob, gender_orientation, address, suburb, 
-                                        postcode, state, country, centerlink_crn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                        postcode, state, country, centerlink_crn, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
 
             $result = $stmt->execute([$fname, $mname, $lname, $email, $password, $gender, $dob, $genderOrientation, $address, 
-                                        $suburb, $postcode, $state, $country, $centerlinkCRN]);
+                                        $suburb, $postcode, $state, $country, $centerlinkCRN, $img]);
         
 			if ($result) {
-				$success = "Registration Completed Successfully";
-				$fname = $mname = $lname = $email = $gender = $dob = $genderOrientation = $address = $suburb = $postcode = $state = $country = $centerlinkCRN = "";
+				$success = "Registration Completed Successfully please sign in";
+				$fname = $mname = $lname = $email = $gender = $dob = $genderOrientation = $address = $suburb = $postcode = $state = $country = $centerlinkCRN = $img = "";
 				$_POST['password'] = "";
 				$_POST['confirm-password'] = "";
 			} else {
@@ -81,7 +82,7 @@ if(isset($_POST['submit'])) {
 <main>   
     <section class="registration">
         <div class="registration-wrapper">  
-            
+        
             <!-- User registration -->
             <div id="users" class="tabcontent user">
                 <div class="form-container">
@@ -90,8 +91,6 @@ if(isset($_POST['submit'])) {
                         <span class="error"><?php echo $error; ?></span>
                         <div class="success"><?php echo $success; ?></div>
                     </div>
-
-                    
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
@@ -266,6 +265,16 @@ if(isset($_POST['submit'])) {
                             <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password.." value="<?php echo $_POST['confirm-password']; ?>" required>
                         </div>
                         <span class="error"><?php echo $passwordError; ?></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="row">
+                        <div class="label-column">
+                            <label for="img">Passport Image</label>
+                        </div>
+                        <div class="input-column">
+                            <input type="file" id="img" name="img" placeholder="Your image.." value="<?php echo $_POST['img']; ?>" required>
+                        </div>
                     </div>
 
                     <br>

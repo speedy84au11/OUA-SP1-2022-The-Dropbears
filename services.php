@@ -1,6 +1,15 @@
 <?php   include("./inc/header.php");  ?>
 
 <main>
+    <div class="services-top">
+        <ul class="breadcrumb">
+            <li><a href="index.php">Home/</a></li>
+            <li><a href="services.php">Services</a></li>
+        </ul>
+    </div>
+    
+
+
     <!-- Content for the services section -->
     <section class="service">
         <p class="small-heading">Services</p>

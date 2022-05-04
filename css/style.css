@@ -18,7 +18,20 @@
     background-image: linear-gradient(to bottom, var(--white) , var(--main-color));
 }*/
 
+/*==========================
+  Breadcrumb styling
+  ========================*/
 
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li a{
+    line-height: 50px;
+    font-family: var(--main-font);
+    color: var(--main-color);
+    letter-spacing: 1px;
+}
 
 /* Clear floated elements */
 .clearfix {
@@ -132,12 +145,6 @@ header {
     opacity: .7;
 }
 
-
-
-
-
-
-
 #top-bar span {
     text-transform: uppercase;
     background-color: var(--main-color);
@@ -146,7 +153,13 @@ header {
     padding:  2px 5px;
     border: double 3px var(--white);
     border-radius: 14px;
+    cursor: pointer;
 }
+
+#top-bar span:hover {
+    opacity: .8;
+}
+
 
 /* Top bar media query */
 @media screen and (max-width: 768px) {
@@ -159,6 +172,81 @@ header {
         display: none;
     }
 }
+
+
+/* ===================
+    Digital Id Styling
+======================*/
+
+#digital-id {
+    display: none;
+    position: absolute;
+    top: 400;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.digital-id-content {
+    width: 80vw;
+    min-height: 80vh;
+    background-color: var(--white);
+    border: solid 1px var(--main-color);
+}   
+
+.digital-id-content img{
+    width: 40%;
+    margin: 50px 0 10px 0;
+    box-shadow: 1px 2px 2px 1px var(--main-color);
+}
+
+
+#digital-id .close {
+    float: right;
+    padding: 10px 30px;  
+}
+
+#digital-id .d-id {
+    float: left;
+    padding: 10px 30px;
+
+}
+
+#digital-id .close, #digital-id .d-id {
+    margin: 10px 10px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    background-image: linear-gradient(90deg, var(--main-color) 0%, var(--white) 50%, var(--white) 50%, var(--main-color) 100%);
+    color: var(--main-color);
+    border-radius: 25px ;
+}
+
+#digital-id .d-id-name {
+    margin-top: 30px;
+    padding: 30px;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    background-image: linear-gradient(90deg, var(--main-color) 0%, var(--white) 50%, var(--white) 50%, var(--main-color) 100%);
+    color: var(--main-color);
+}
+
+#digital-id .close {
+    cursor: pointer;
+}
+
+#digital-id .close:hover {
+    opacity: .7;
+}
+
+#digital-id p {
+    font-size: 1.3rem;
+}
+
+
 
 
  
@@ -631,16 +719,19 @@ main h4 {
 }
 
 .service-heading {
-    padding: 30px 0;
+    padding: 20px 0;
     width: 100%;
-    background-image: linear-gradient(180deg, var(--main-color) 0%, var(--white) 30%, var(--white) 70%, var(--main-color) 100%);
+    background-color: var(--white);
+    border: var(--main-color) solid 1px;
+    box-shadow: 1px 2px 2px 1px var(--main-color);
+    border-radius: 20px;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
     color: var(--main-color);
     top: 470px;
     opacity: .85;
-    margin-bottom: 40px;
+    margin: 40px 0;
 }
 
 .service-page-content img {
@@ -648,11 +739,11 @@ main h4 {
 }
 
 .service-article{
-    
+    padding: 30px;
     display: flex;
     justify-content: space-between;
     align-items:center;
-    height: 60px;
+    flex-direction: column;
 }
 
 .article-content {
@@ -664,6 +755,9 @@ main h4 {
     flex-basis: 20%;
     flex-shrink: 1;
     background-color: var(--main-color);
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 .article-item p, .article-content p {
@@ -672,7 +766,8 @@ main h4 {
 }
 
 .article-content p {
-    font-size: .7rem;
+    font-size: 1rem;
+    font-weight: bold;
     color: var(--main-color);
 }
 
@@ -714,7 +809,14 @@ main h4 {
 .service {
     margin-top: 2px;
     padding: 50px 150px;
-    background-color: #f2f2f2;
+}
+
+.services-top {
+    border-bottom: solid 1px var(--main-color);
+    width: 70%;
+    text-align: left;
+    margin: auto;
+    padding-left: 50px;
 }
 
 .service-wrapper {
@@ -968,7 +1070,7 @@ main h4 {
 .success {
     font-size: 17px;
     margin-top: 20px;
-    color: var(--main-color);
+    color: var(--white);
 }
 
 input[type=text], input[type=password], select, textarea {
@@ -985,13 +1087,15 @@ label {
 }
 
 input[type=submit] {
-    background-color: var(--main-color);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--main-color);
+    font-weight: bold;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    text-transform: uppercase;
 }
 
 input[type=submit]:hover {
@@ -1000,7 +1104,8 @@ input[type=submit]:hover {
 
 .form-container {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: var(--main-color);
+    color: var(--white);
     padding: 20px;
 }
 
@@ -1085,10 +1190,6 @@ input[type=submit]:hover {
     min-height: 100vh;
 }
 
-.content-top, .content-left, .content-right-top, .content-right-bottom {
-    
-}
-
 .content-top {  /*======  Grid item 1 =======*/
     grid-column: 2/ span 4;
     border-bottom: solid 1px var(--main-color);
@@ -1130,8 +1231,7 @@ input[type=submit]:hover {
 .content-right-top h1 {
     text-transform: uppercase;
     color: var(--main-color);
-    font-size: 2rem;
-    
+    font-size: 2rem; 
 }
 
 .content-right-bottom { /*======  Grid item 4 =======*/
@@ -1139,7 +1239,6 @@ input[type=submit]:hover {
     grid-row: 3/ span 4;
     
 }
-
 
 .product-card {
     margin-top: 40px;
@@ -1214,30 +1313,97 @@ input[type=submit]:hover {
 }
  
 
+/*==========================
+  Contact styling
+  ========================*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.breadcrumb li {
-    display: inline;
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 15% 1fr 1fr 15%;
+    grid-template-rows: 50px auto auto auto ;
+    width: 100vw;
+    min-height: auto;
 }
 
-.breadcrumb li a{
-    line-height: 50px;
-    font-family: var(--main-font);
+.contact-top {  /*======  Grid item 1 =======*/
+    grid-column: 2/ span 2;
+    border-bottom: solid 1px var(--main-color);
+    padding-left: 50px;
+}
+
+.contact-form { /*======  Grid item 2 =======*/
+    grid-column: 2/ span 1;
+    grid-row: 2/ span 3;
+    padding: 40px;
+    margin: 30px 0;
+    background-color: var(--main-color);
+    color: var(--white);
+}
+
+.contact-wrapper h4 {
+    font-size: 1.3rem;
+}
+.contact-wrapper p {
+    padding-top: 15px;
+}
+
+.contact-info { /*======  Grid item 3 =======*/
+    grid-column: 3/ span 1;
+    grid-row: 2/ span 3;
+    margin: 30px 5px ;
+    padding: 40px;
     color: var(--main-color);
-    letter-spacing: 1px;
+    background-color: var(--white);
+    border: solid 1px var(--main-color);
+}
+
+.contact-form p, .contact-info p {
+    padding: 25px 0;
+}
+.contact-form-button {
+    margin-top: 20px;
+    border: solid 1px var(--main-color);
+}
+
+
+/* Contact form media query */
+@media screen and (max-width: 1100px) {
+    .contact-form {
+        grid-column: 2/ span 2;
+        grid-row: 2/ span 1;
+    } 
+
+    .contact-info {
+        grid-column: 2/ span 2;
+        grid-row: 3/ span 1;
+    } 
+}
+
+
+
+
+/*==========================
+  About styling
+  ========================*/
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 15% 1fr 1fr 15%;
+    grid-template-rows: 50px auto auto auto ;
+    width: 100vw;
+    min-height: 70vh;
+}
+
+.about-top {  /*======  Grid item 1 =======*/
+    grid-column: 2/ span 2;
+    border-bottom: solid 1px var(--main-color);
+    padding-left: 50px;
+   
+}
+
+
+.about-info { /*======  Grid item 1 =======*/
+    grid-column: 2/ span 2;
+    grid-row: 2/ span 3;
+    border: solid 1px var(--main-color);
 }

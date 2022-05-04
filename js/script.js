@@ -40,6 +40,26 @@ function closeLogin() {
 }
 
 // =====================================
+// =========== Digital Id ==============
+// =====================================
+
+// Open the digital Id
+function openDigitalId() {
+  var x = document.getElementById("digital-id");
+  if(x.style.display === "flex") {
+      x.style.display = "none";
+  } else {
+      x.style.display = "flex";
+  }
+  backToTop();
+}
+
+// Close the login tab
+function closeDigitalId() {
+document.getElementById("digital-id").style.display = 'none';
+}
+
+// =====================================
 // =========== Search Bar ==============
 // =====================================
 
@@ -65,45 +85,66 @@ function closeSearch() {
 
 // Toggle from dark to light mode
 
+
+
+
 var colors = document.getElementById('colors'); 
 
 
 function toggleDefault() {
   var x = document.querySelector(':root');
   x.style.setProperty('--main-color', '#0B74BD');
-  colors.style.display = "none";          
+  colors.style.display = "none";
+
+  localStorage.setItem("color", "#0B74BD");       
 }
 
 function toggleGreen() {
     var x = document.querySelector(':root');
     x.style.setProperty('--main-color', 'green');
-    colors.style.display = "none";          
+    colors.style.display = "none"; 
+    
+    localStorage.setItem("color", "green");          
 }
 
 function toggleRed() {
   var x = document.querySelector(':root');
   x.style.setProperty('--main-color', 'red');
-  colors.style.display = "none";          
+  colors.style.display = "none"; 
+  
+  localStorage.setItem("color", "red");         
 }
 
 function toggleBlack() {
   var x = document.querySelector(':root');
   x.style.setProperty('--main-color', 'black');
-  colors.style.display = "none";          
+  colors.style.display = "none"; 
+
+  localStorage.setItem("color", "black");         
 }
 
 function toggleOrange() {
   var x = document.querySelector(':root');
   x.style.setProperty('--main-color', 'orange');
-  colors.style.display = "none";          
+  colors.style.display = "none";  
+  
+  localStorage.setItem("color", "orange");       
 }
 
 function togglePurple() {
   var x = document.querySelector(':root');
   x.style.setProperty('--main-color', 'purple');
-  colors.style.display = "none";          
+  colors.style.display = "none"; 
+
+  localStorage.setItem("color", "purple");        
 }
 
+
+function maintainColor() {
+  var color = localStorage.getItem('color')
+  var x = document.querySelector(':root');
+  x.style.setProperty('--main-color', color);
+}
 
 // Open the color selector
 function openColorSelector() {

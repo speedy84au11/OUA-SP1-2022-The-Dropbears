@@ -2,9 +2,9 @@
 include("./inc/header.php");  
 
 
-//error_reporting(0);
 
-session_start();
+
+
 
 if (isset($_SESSION['username'])) {
    header("Location: index.php");
@@ -16,7 +16,7 @@ if (isset($_SESSION['username'])) {
     $s_success ="";
     $s_error = "";
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['s_submit'])) {
 
     $s_name = $_POST['s_name'];
     $s_phone = $_POST['s_phone'];
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])) {
                                      $s_servicesAvailable, $s_password, $s_img]);
         
 			if ($result) {
-				$s_success = "Registration Completed Successfully";
+				$s_success = "Registration Completed Successfully please sign in";
 
 				$s_name = $s_phone = $s_email = $s_website = $s_address = $s_suburb = $s_postcode = $s_state = $s_country = $s_daysOpen = $s_operatingHours = $s_supportType = $s_serviceEligibility = $s_phoneRechargeAvailability = $s_servicesAvailable = $s_password = $s_img = "";
 				
@@ -96,8 +96,6 @@ if(isset($_POST['submit'])) {
                         <span class="error"><?php echo $s_error; ?></span>
                         <div class="success"><?php echo $s_success; ?></div>
                     </div>
-
-                    
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
@@ -300,7 +298,7 @@ if(isset($_POST['submit'])) {
     
                     <br>
                     <div class="row">
-                        <input type="submit" value="submit" name="submit">
+                        <input type="submit" value="submit" name="s_submit">
                     </div>
                     </form>
                 </div>

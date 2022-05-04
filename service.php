@@ -4,6 +4,13 @@ include("./inc/header.php");
 
 $id = $_GET['id'];
 ?>
+
+   <div class="services-top">
+        <ul class="breadcrumb">
+            <li><a href="index.php">Home/</a></li>
+            <li><a href="">Service</a></li>
+        </ul>
+    </div>
 <section class="service-page-wrapper"> 
 
    <?php
@@ -35,31 +42,33 @@ $id = $_GET['id'];
          
          <div class="service-page-content">
 
-               <div class="service-heading"><?php echo $name?></div>
+               
                <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
+
+               <div class="service-heading"><?php echo $name?></div>
                
                <article class="service-article">
-                  <div class="article-item"><p>Address:</p></div>
+                  <div class="article-item"><p>Address</p></div>
                   <div class="article-content"><p><?php echo $address . " " . $suburb . ", " .$state; ?></p></div>  
                </article> 
                
                <article class="service-article">
-                  <div class="article-item"><p>Phone:</p></div>
+                  <div class="article-item"><p>Phone</p></div>
                   <div class="article-content"><p><?php echo $phone; ?></p></div>  
                </article>  
                
                <article class="service-article">
-                  <div class="article-item"><p>Email:</p></div>
+                  <div class="article-item"><p>Email</p></div>
                   <div class="article-content"><p><?php echo $email; ?></p></div>  
                </article>  
 
                <article class="service-article">
-                  <div class="article-item"><p>Hours:</p></div>
+                  <div class="article-item"><p>Hours</p></div>
                   <div class="article-content"><p><?php echo $daysOpen . " " . $operatingHours; ?></p></div>  
                </article> 
 
                <article class="service-article">
-                  <div class="article-item"><p>Type:</p></div>
+                  <div class="article-item"><p>Type</p></div>
                   <div class="article-content"><p><?php echo $supportType; ?></p></div>  
                </article> 
 

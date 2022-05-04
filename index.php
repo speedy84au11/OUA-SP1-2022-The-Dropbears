@@ -35,7 +35,7 @@
   
         <?php
             //Database querry which retreives data from services table
-            if(isset($_POST['submit'])) {
+            if(isset($_POST['search-submit'])) {
 
                 // Create query using search input
                 $search = $_POST['search'];
