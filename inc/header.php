@@ -8,23 +8,36 @@ error_reporting(0);
 
 
 if (isset($_POST['login-submit'])) {
+    
 	$email = $_POST['email'];
 	$password = sha1($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-	$s_sql = "SELECT * FROM services WHERE email='$email' AND password='$password'";
+    $sql = "SELECT * FROM users WHERE email= ? AND password= ?";
+	$s_sql = "SELECT * FROM services WHERE email= ? AND password= ?";
 
-	//Prepare the SQL statement.
-    $stmt = $conn->prepare($sql);
-    $s_stmt = $conn->prepare($s_sql);
+    try {
 
-    //Bind our email value to the :email parameter.
-    $stmt->bindValue(':email', $email);
-    $s_stmt->bindValue(':email', $email);
+        //Prepare the SQL statement.
+        $stmt = $conn->prepare($sql);
+        $s_stmt = $conn->prepare($s_sql);
 
-    //Execute the statement.
-    $stmt->execute();
-    $s_stmt->execute();
+        //Bind our email value to the :email parameter.
+        $stmt->bindValue(1, $email, PDO::PARAM_STR);
+        $s_stmt->bindValue(1, $email, PDO::PARAM_STR);
+
+        //Bind our password value to the :password parameter.
+        $stmt->bindValue(2, $password, PDO::PARAM_STR);
+        $s_stmt->bindValue(2, $password, PDO::PARAM_STR);
+
+        //Execute the statement.
+        $stmt->execute();
+        $s_stmt->execute();
+
+    } catch (PDOException $e) {
+            echo $e->getMessage();
+    }
+
+	
 
     //Fetch the row / result.
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -51,6 +64,7 @@ if (isset($_POST['login-submit'])) {
 	} else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
     }
+
 }
 
 ?>
@@ -89,38 +103,30 @@ if (isset($_POST['login-submit'])) {
             <div class="user-content">
             <?php
                 if(isset($_SESSION['u_id'])) { 
-                    ?> <p class="welcome-message" onclick=openDigitalId()> <?php echo ('Logged in as ') ?>  <span><?php echo $_SESSION['fname'];?></span></p> <?php
+                    ?> <p class="welcome-message" onclick=openUserDropdownMenu()><span><?php echo $_SESSION['fname'] . " " . $_SESSION['lname'];?><i class="fa fa-user"></i></span></p> <?php
                 } else if(isset($_SESSION['s_id'])) {  
-                    ?> <p class="welcome-message" onclick=openDigitalId()> <?php echo ('Logged in as') ?>  <span><?php echo $_SESSION['name'];?></span></p> <?php
+                    ?> <p class="welcome-message" onclick=openUserDropdownMenu()><span><?php echo $_SESSION['name'];?><i class="fa fa-user"></i></span></p> <?php
                 } else { 
                     ?> <p> <?php echo ('Welcome to The Connected App '); ?></p> <?php
                 } ?>
                 </div>
 
-                <div id="digital-id">
-                    <div class="digital-id-content">
-                        <p onclick=closeDigitalId() class="close">Close</p>
-                        
-                        <p class="d-id">Digital Id</p>
-                        <div class="clearfix"></div>
-                    <?php
-                        if(isset($_SESSION['u_id'])) { ?>
-                            <p class="d-id-name"> <?php echo $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
-                            <p> <?php echo "Service Id: " . $_SESSION['u_id']; ?></p> 
-                            <p> <?php echo "Email: " . $_SESSION['email']; ?></p> <?php
-                        } else if (isset($_SESSION['s_id'])) { ?>
-                            <p class="d-id-name"> <?php echo $_SESSION['name']; ?></p>
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
-                            <p> <?php echo "Service Id: " . $_SESSION['s_id']; ?></p> 
-                            <p> <?php echo "Phone number: " . $_SESSION['phone']; ?></p> 
-                            <p> <?php echo "Email: " . $_SESSION['email']; ?></p> 
-                            <p> <?php echo "Website: " . $_SESSION['website']; ?></p> <?php
-                        } ?>
-                    </div>
+                <div id="user-dropdown">
+                   
+                        <!-- Close botton for search bar -->
+                        <div class="close-search" onclick="closeUserDropdownMenu()">
+                            <svg class="cross"  height="18" width="18">
+                                <line x1="0" y1="0" x2="18" y2="18" style="stroke-width:3" />
+                                <line x1="18" y1="0" x2="0" y2="18" style="stroke-width:3" />
+                            </svg>
+                        </div>
+                    <ul>
+                        <li><a href="digital-id.php">Digital Id</a></li>
+                        <li><a href="report-generator.php">Generate Report</a></li>
+                        <li><a href="logout.php">Sign Out</a></li>
+                    </ul>
+
                 </div>
-
-
         </div> <!-- top-bar -->
 
         <!-- Nav bar -->

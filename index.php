@@ -3,7 +3,7 @@
 <main>
 
     <?php
-        if(!isset($_SESSION['name'])) { 
+        if(!(isset($_SESSION["name"]) || isset($_SESSION["fname"]))) { 
             ?>
                 <!-- Content for the help buttons -->
                 <section class="objective-content">

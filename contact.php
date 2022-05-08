@@ -6,7 +6,7 @@
     <section class="contact-top">
         <ul class="breadcrumb">
             <li><a href="index.php">Home/</a></li>
-            <li><a href="contact.php">About</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
         </ul>
     </section>
 

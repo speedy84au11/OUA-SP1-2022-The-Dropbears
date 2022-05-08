@@ -13,7 +13,6 @@
     <!-- Content for the services section -->
     <section class="service">
         <p class="small-heading">Services</p>
-        <h4>Services we have on board</h4>
 
         <!-- testimonal wrapper -->
         <div class="service-wrapper">

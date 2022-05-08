@@ -18,6 +18,30 @@ function closeMenu() {
   document.getElementById("mobile-menu-container").style.display = 'none';
 }
 
+
+// =====================================
+// =========== User Dropdown menu=======
+// =====================================
+
+// Open the user dropdown menu
+function openUserDropdownMenu() {
+  var x = document.getElementById("user-dropdown");
+  if(x.style.display === "block") {
+      x.style.display = "none";
+  } else {
+      x.style.display = "block";
+  }
+  backToTop();
+}
+
+// Close the user dropdown menu
+function closeUserDropdownMenu() {
+document.getElementById("user-dropdown").style.display = 'none';
+}
+
+
+
+
 // =====================================
 // =========== Login tab ===============
 // =====================================
@@ -39,25 +63,6 @@ function closeLogin() {
     document.getElementById("sign-in-tab").style.display = 'none';
 }
 
-// =====================================
-// =========== Digital Id ==============
-// =====================================
-
-// Open the digital Id
-function openDigitalId() {
-  var x = document.getElementById("digital-id");
-  if(x.style.display === "flex") {
-      x.style.display = "none";
-  } else {
-      x.style.display = "flex";
-  }
-  backToTop();
-}
-
-// Close the login tab
-function closeDigitalId() {
-document.getElementById("digital-id").style.display = 'none';
-}
 
 // =====================================
 // =========== Search Bar ==============
@@ -65,8 +70,7 @@ document.getElementById("digital-id").style.display = 'none';
 
 // Open the search bar
 function toggleSearch() {
-    var x = document.getElementById("search-wrapper");
-    if(x.style.display === "flex") {
+    var x = document.getElementById("search-wrapper");    if(x.style.display === "flex") {
         x.style.display = "none";
     } else {
         x.style.display = "flex";

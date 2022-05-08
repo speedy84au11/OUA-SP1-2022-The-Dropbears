@@ -38,9 +38,10 @@
         <div class="product-card">
                         <?php 
                             // Create query using search input
-                            $search = $_POST['search'];
+
+                            // $search = $_POST['search'];
                             $sql = $conn->prepare('SELECT * FROM products');
-                            $sql->bindValue(':keyword' , '%' . $search . '%', PDO::PARAM_STR);
+                            // $sql->bindValue(':keyword' , '%' . $search . '%', PDO::PARAM_STR);
                             $sql->execute();
                             $products = $sql->fetchAll();
                             $rows = $sql->rowCount();
