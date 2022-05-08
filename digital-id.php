@@ -16,7 +16,7 @@
             if(isset($_SESSION['u_id'])) { ?>
                 <p class="d-id-name"> <?php echo $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
                 <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
-                <p> <?php echo "Service Id: " . $_SESSION['u_id']; ?></p> 
+                <p> <?php echo "User Id: " . $_SESSION['u_id']; ?></p> 
                 <p> <?php echo "Email: " . $_SESSION['email']; ?></p> <?php
             } else if (isset($_SESSION['s_id'])) { ?>
                 <p class="d-id-name"> <?php echo $_SESSION['name']; ?></p>
