@@ -65,7 +65,13 @@
                         
                         <!-- Individual service cards -->
                     <div class="service-content">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
+
+                    <?php if ($img != NULL) {
+                        ?> <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img> <?php
+                    } else {
+                        ?> <img src="./img/alternative.jpg" title="description"></img> <?php
+                    }?>
+                    
                         <div class="service-name-wrapper">
                             <p class="service-name service-link" ><?php echo $name?></p>
                         </div>
@@ -105,7 +111,11 @@
                     
                     <!-- Individual service cards -->
                     <div class="service-content">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
+                        <?php if ($img != NULL) {
+                            ?> <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img> <?php
+                        } else {
+                            ?> <img src="./img/alternative.jpg" title="description"></img> <?php
+                        }?>
                         <div class="service-name-wrapper">
                             <p class="service-name service-link" ><?php echo $name?></p>
                         </div>
@@ -115,7 +125,7 @@
                         <p class="service-location" style="margin-top: 15px"><?php echo ( $suburb . ", " . $state); ?></p>
                     </div> <!-- Individual service cards --> <?php
 
-                    if(++$count == 6) {
+                    if(++$count == 20) {
                         break;
                     }
                 }

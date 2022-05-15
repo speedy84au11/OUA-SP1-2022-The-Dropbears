@@ -41,6 +41,31 @@ document.getElementById("user-dropdown").style.display = 'none';
 
 
 
+// =====================================
+// =========== List Products ===========
+// =====================================
+
+// Open the user dropdown menu
+function openListProducts() {
+  var x = document.getElementById("list-products");
+  if(x.style.display === "flex") {
+      x.style.display = "none";
+  } else {
+      x.style.display = "flex";
+  }
+  backToTop();
+}
+
+// Close the user dropdown menu
+function closeListProducts() {
+document.getElementById("list-products").style.display = 'none';
+}
+
+
+
+
+
+
 
 // =====================================
 // =========== Login tab ===============

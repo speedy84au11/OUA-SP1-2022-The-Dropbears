@@ -43,7 +43,11 @@ $id = $_GET['id'];
          <div class="service-page-content">
 
                
-               <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img>
+               <?php if ($img != NULL) {
+                     ?> <img src="data:image/jpeg;base64,<?php echo base64_encode($img); ?>" title="description"></img> <?php
+               } else {
+                     ?> <img src="./img/alternative.jpg" title="description"></img> <?php
+               }?>
 
                <div class="service-heading"><?php echo $name?></div>
                

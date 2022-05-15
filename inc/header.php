@@ -4,6 +4,7 @@ include("./tools.php");
 
 session_start();
 
+
 error_reporting(0);
 
 
@@ -47,10 +48,15 @@ if (isset($_POST['login-submit'])) {
     if ($row == true) {
 		$_SESSION['u_id'] = $row['id'];
         $_SESSION['fname'] = $row['fname'];
+        $_SESSION['dob'] = $row['dob'];
+        $_SESSION['gender'] = $row['gender'];
+        $_SESSION['state'] = $row['state'];
+        $_SESSION['centerlink_crn'] = $row['centerlink_crn'];
         $_SESSION['mname'] = $row['mname'];
         $_SESSION['lname'] = $row['lname'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['img'] = $row['img'];
+        $_SESSION['gender_orientation'] = $row['gender_orientation'];
 
          
 	} else if ($s_row == true) {
@@ -60,6 +66,8 @@ if (isset($_POST['login-submit'])) {
         $_SESSION['phone'] = $s_row['phone'];
         $_SESSION['img'] = $s_row['img'];
         $_SESSION['website'] = $s_row['website'];
+        $_SESSION['support_type'] = $s_row['support_type'];
+        $_SESSION['state'] = $s_row['state'];
 
 	} else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
@@ -103,9 +111,9 @@ if (isset($_POST['login-submit'])) {
             <div class="user-content">
             <?php
                 if(isset($_SESSION['u_id'])) { 
-                    ?> <p class="welcome-message" onclick=openUserDropdownMenu()><span><?php echo $_SESSION['fname'] . " " . $_SESSION['lname'];?><i class="fa fa-user"></i></span></p> <?php
+                    ?> <p class="welcome-message"><span><?php echo $_SESSION['fname'] . " " . $_SESSION['lname'];?><i class="fa fa-user" onclick=openUserDropdownMenu()></i><a href="cart.php"><i class="fa fa-shopping-cart"></i></a></span></p> <?php
                 } else if(isset($_SESSION['s_id'])) {  
-                    ?> <p class="welcome-message" onclick=openUserDropdownMenu()><span><?php echo $_SESSION['name'];?><i class="fa fa-user"></i></span></p> <?php
+                    ?> <p class="welcome-message"><span><?php echo $_SESSION['name'];?><i class="fa fa-user" onclick=openUserDropdownMenu()></i><a href="cart.php"><i class="fa fa-shopping-cart"></i></a></span></p> <?php
                 } else { 
                     ?> <p> <?php echo ('Welcome to The Connected App '); ?></p> <?php
                 } ?>
@@ -246,3 +254,6 @@ if (isset($_POST['login-submit'])) {
 
         <button onclick="backToTop()" id="back-to-top">Top</button>
     </header>
+
+
+   

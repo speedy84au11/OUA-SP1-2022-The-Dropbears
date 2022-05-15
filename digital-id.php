@@ -14,21 +14,48 @@
 
         <?php
             if(isset($_SESSION['u_id'])) { ?>
-                <p class="d-id-name"> <?php echo $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
-                <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
-                <p> <?php echo "User Id: " . $_SESSION['u_id']; ?></p> 
-                <p> <?php echo "Email: " . $_SESSION['email']; ?></p> <?php
+
+                <div class="d-id-g1"> <?php 
+                
+                    if ($_SESSION['img'] != NULL) { ?> 
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
+                    } else {
+                        ?> <img src="./img/alternative_user.jpg" title="description"></img> <?php
+                    }?><?php 
+                    
+                    if ($_SESSION['gender_orientation'] != "heterosexual") { ?>
+                        <div class="rainbow"><span>LGBTQ+</span></div> <?php 
+                    } ?>
+                </div>
+                <div class="d-id-g2">
+                    <p><span>Name:</span><?php echo " " . $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
+                    <p><span>D.O.B:</span><?php echo " " . $_SESSION['dob']; ?></p>
+                    <p><span>Gender:</span><?php echo " " . $_SESSION['gender']; ?></p>
+                    <p><span>Location:</span><?php echo " " . $_SESSION['state']; ?></p>
+                    <p><span>Id Number:</span><?php echo " " . $_SESSION['u_id']; ?></p>
+                    <p><span>Centrelnk CRN:</span><?php echo " " . $_SESSION['centerlink_crn']; ?></p>
+                    <p><span>Expiry:</span><?php echo " " . $_SESSION['dob']; ?></p>
+               </div> <?php
+
             } else if (isset($_SESSION['s_id'])) { ?>
-                <p class="d-id-name"> <?php echo $_SESSION['name']; ?></p>
-                <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img>
-                <p> <?php echo "Service Id: " . $_SESSION['s_id']; ?></p> 
-                <p> <?php echo "Phone number: " . $_SESSION['phone']; ?></p> 
-                <p> <?php echo "Email: " . $_SESSION['email']; ?></p> 
-                <p> <?php echo "Website: " . $_SESSION['website']; ?></p> <?php
+                <div class="d-id-g1"> <?php 
+                    if ($_SESSION['img'] != NULL) { ?> 
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
+                    } else {
+                        ?> <img src="./img/alternative_user.jpg" title="description"></img> <?php
+                    }?>
+            </div>
+
+            <div class="d-id-g2">
+                <p><span>Name:</span><?php echo " " . $_SESSION['name'];?></p>
+                <p><span>Support Type:</span><?php echo " " . $_SESSION['support_type']; ?></p>
+                <p><span>Location:</span><?php echo " " . $_SESSION['state']; ?></p>
+                <p><span>Id Number:</span><?php echo " " . $_SESSION['s_id']; ?></p>
+                <p><span>Website:</span><?php echo " " . $_SESSION['website']; ?></p>
+           </div> <?phpte: " . $_SESSION['website']; ?></p> <?php
             } ?>
         </div>
     </div>
-    
 </div>
 
 <?php   include("./inc/footer.php");  ?>

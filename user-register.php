@@ -31,7 +31,17 @@ if(isset($_POST['submit'])) {
     $state = $_POST['state'];
     $country = $_POST['country'];
     $centerlinkCRN = $_POST['centerlink-crn'];
-    $img = $_POST['img'];
+
+    $imgName = $_FILES['img']['name'];
+    $imgData = file_get_contents($_FILES['img']['tmp_name']);
+    $imgType = $_FILES['img']['type'];
+    
+    // if(substr($imgType,0,5) == "image") {
+    //     echo 'working';
+    // } else {
+    //     echo 'Not an image';
+    // }
+    
     
 
     if ($password == $confirmPassword) {
@@ -58,11 +68,11 @@ if(isset($_POST['submit'])) {
             $stmt = $conn->prepare($sql);
 
             $result = $stmt->execute([$fname, $mname, $lname, $email, $password, $gender, $dob, $genderOrientation, $address, 
-                                        $suburb, $postcode, $state, $country, $centerlinkCRN, $img]);
+                                        $suburb, $postcode, $state, $country, $centerlinkCRN, $imgData]);
         
 			if ($result) {
 				$success = "Registration Completed Successfully please sign in";
-				$fname = $mname = $lname = $email = $gender = $dob = $genderOrientation = $address = $suburb = $postcode = $state = $country = $centerlinkCRN = $img = "";
+				$fname = $mname = $lname = $email = $gender = $dob = $genderOrientation = $address = $suburb = $postcode = $state = $country = $centerlinkCRN = $imgData = "";
 				$_POST['password'] = "";
 				$_POST['confirm-password'] = "";
 			} else {
@@ -91,7 +101,7 @@ if(isset($_POST['submit'])) {
                         <div class="success"><?php echo $success; ?></div>
                     </div>
 
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 
                     <!-- First name input -->
                     <div class="row">
@@ -266,7 +276,7 @@ if(isset($_POST['submit'])) {
                         <span class="error"><?php echo $passwordError; ?></span>
                     </div>
 
-                    <!-- Password input -->
+                    <!-- Image input -->
                     <div class="row">
                         <div class="label-column">
                             <label for="img">Passport Image</label>

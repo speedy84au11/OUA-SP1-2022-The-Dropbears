@@ -22,6 +22,7 @@ if(isset($_POST['s_submit'])) {
     $s_phone = $_POST['s_phone'];
     $s_email = $_POST['s_email'];
     $s_website = $_POST['s_website'];
+    $s_addressNumber = $_POST['s_address_number'];
     $s_address = $_POST['s_address'];
     $s_suburb = $_POST['s_suburb'];
     $s_postcode = $_POST['s_postcode'];
@@ -35,8 +36,16 @@ if(isset($_POST['s_submit'])) {
     $s_servicesAvailable = $_POST['s_services-available'];
     $s_password = sha1($_POST['s_password']);
     $s_confirmPassword = sha1($_POST['s_confirm-password']);
-    $s_img = $_POST['s_image'];
+
+    $s_imgName = $_FILES['s_img']['name'];
+    $s_imgData = file_get_contents($_FILES['s_img']['tmp_name']);
+    $s_imgType = $_FILES['s_img']['type'];
     
+    // if(substr($s_imgType,0,5) == "image") {
+    //     echo 'working';
+    // } else {
+    //     echo 'Not an image';
+    // }
 
     if ($s_password == $s_confirmPassword) {
 		$sql = "SELECT * FROM services WHERE email='$s_email'";
@@ -55,20 +64,20 @@ if(isset($_POST['s_submit'])) {
 
 		if ($row == false) {
              
-			$sql = "INSERT INTO services (name, phone, email, website, address, suburb, postcode, state, country, days_open, operating_hours, 
+			$sql = "INSERT INTO services (name, phone, email, website, address_number, address, suburb, postcode, state, country, days_open, operating_hours, 
                                         support_type, service_eligibility,  phone_recharge_availability, services_available, password, img) 
-                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
 
-            $result = $stmt->execute([$s_name, $s_phone, $s_email, $s_website, $s_address, $s_suburb, $s_postcode, $s_state, $s_country, 
+            $result = $stmt->execute([$s_name, $s_phone, $s_email, $s_website, $s_addressNumber, $s_address, $s_suburb, $s_postcode, $s_state, $s_country, 
                                      $s_daysOpen, $s_operatingHours, $s_supportType, $s_serviceEligibility, $s_phoneRechargeAvailability, 
-                                     $s_servicesAvailable, $s_password, $s_img]);
+                                     $s_servicesAvailable, $s_password, $s_imgData]);
         
 			if ($result) {
 				$s_success = "Registration Completed Successfully please sign in";
 
-				$s_name = $s_phone = $s_email = $s_website = $s_address = $s_suburb = $s_postcode = $s_state = $s_country = $s_daysOpen = $s_operatingHours = $s_supportType = $s_serviceEligibility = $s_phoneRechargeAvailability = $s_servicesAvailable = $s_password = $s_img = "";
+				$s_name = $s_phone = $s_email = $s_website = $s_addressNumber = $s_address = $s_suburb = $s_postcode = $s_state = $s_country = $s_daysOpen = $s_operatingHours = $s_supportType = $s_serviceEligibility = $s_phoneRechargeAvailability = $s_servicesAvailable = $s_password = $s_imgData = "";
 				
                 $_POST['s_password'] = "";
 				$_POST['s_confirm-password'] = "";
@@ -97,7 +106,7 @@ if(isset($_POST['s_submit'])) {
                         <div class="success"><?php echo $s_success; ?></div>
                     </div>
 
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 
                     <!-- Name input -->
                     <div class="row">
@@ -139,6 +148,16 @@ if(isset($_POST['s_submit'])) {
                             <input type="text" id="s_website" name="s_website" placeholder="Your website.." value="<?php echo $s_website; ?>" required>
                         </div>
             
+                    </div>
+
+                    <!-- Address Number input -->
+                    <div class="row">
+                        <div class="label-column">
+                            <label for="s_address_number">Address</label>
+                        </div>
+                        <div class="input-column">
+                            <input type="text" id="s_address_number" name="s_address_number" placeholder="Your address.." value="<?php echo $s_addressNumber; ?>" required>   
+                        </div>
                     </div>
 
                     <!-- Address input -->
@@ -288,10 +307,10 @@ if(isset($_POST['s_submit'])) {
                     <!-- image input -->
                     <div class="row">
                         <div class="label-column">
-                            <label for="s_image">Image</label>
+                            <label for="s_img">Image</label>
                         </div>
                         <div class="input-column">
-                            <input type="file" id="s_image" name="s_image" placeholder="Your image.." value="<?php echo $_POST['s_image']; ?>" required>
+                            <input type="file" id="s_img" name="s_img" placeholder="Your image.." value="<?php echo $_POST['s_img']; ?>" required>
                         </div>
                     </div>
 
