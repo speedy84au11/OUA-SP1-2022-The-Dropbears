@@ -61,7 +61,8 @@
                         <input type="hidden" value="<?php echo $productId ?>" name="pid">
                         <input type="hidden" value="<?php echo $price ?>" name="pprice">
                         <input type="hidden" value="<?php echo $productName ?>" name="pname">
-                        <button name="add-cart">Add to cart</button>
+                        
+                        <button class="add-to-cart-button" name="add-cart">Add to cart</button>
                     </form>  
                     
                 </div> <!-- Individual product cards -->  <?php 
@@ -222,7 +223,7 @@ if(isset($_POST['list-product'])) {
                     </div>
 
                     <div class="row">
-                        <button name="list-product">Add to cart</button>
+                        <button name="list-product">Add Product</button>
                     </div>  
                 </form>
             </div>

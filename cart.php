@@ -7,18 +7,14 @@
 if(isset($_POST['add-cart'])) {  
 
     $productId = $_POST['pid'];
-
-    if(isset($_SESSION['u_id'])) {
-        $buyerId = $_SESSION['u_id'];
-    } else if(isset($_SESSION['s_id'])) {
-        $buyerId = $_SESSION['s_id'];
-    } else  
-
     $price = $_POST['pprice'];
     $name = $_POST['pname'];
     $img = $_POST['pimg'];
-        
-    $sql = "SELECT * FROM cart WHERE product_id= '$productId' AND buyer_id= '$buyerId'";
+
+    if(isset($_SESSION['u_id'])) {
+        $buyerId = $_SESSION['u_id'];
+
+        $sql = "SELECT * FROM cart WHERE product_id= '$productId' AND buyer_id= '$buyerId'";
 
     //Prepare the SQL statement.
     $stmt = $conn->prepare($sql);
@@ -56,6 +52,57 @@ if(isset($_POST['add-cart'])) {
             echo $sql . "<br>" . $e->getMessage();
             }
         }
+    } else if(isset($_SESSION['s_id'])) {
+        $buyerId = $_SESSION['s_id'];
+
+        $sql = "SELECT * FROM cart WHERE product_id= '$productId' AND buyer_id= '$buyerId'";
+
+    //Prepare the SQL statement.
+    $stmt = $conn->prepare($sql);
+
+    //Bind our email value to the :email parameter.
+    $stmt->bindValue(':id', $cartId);
+    $stmt->bindValue(':buyer_id', $buyerId);
+
+    //Execute the statement.
+    $stmt->execute();
+
+    //Fetch the row / result.
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+        if($row == false) {
+
+            $psql = "SELECT * FROM products WHERE id= '$productId'";
+            $pstmt = $conn->prepare($psql);
+            $pstmt->bindValue(':id', $productId);
+            $pstmt->execute();
+            $prow = $pstmt->fetch(PDO::FETCH_ASSOC);
+            
+            try {
+                $statement = $conn->prepare('INSERT INTO cart (product_id, buyer_id, price, product_name, img)
+                VALUES (:product_id, :buyer_id, :price, :product_name, :img)');
+    
+            $statement->execute([
+                'buyer_id' => $buyerId,
+                'product_id' => $prow['id'],
+                'price' => $prow['price'],
+                'product_name' => $prow['product_name'],
+                'img' => $prow['img'],
+            ]);
+            } catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            }
+        }
+    } else { ?>
+        <div class="cart-error">
+            <h1>Must be signed in to add to cart</h1>
+        </div>
+     <?php   
+    }
+
+    
+        
+    
     }    
 ?>
 

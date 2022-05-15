@@ -1357,6 +1357,20 @@ input[type=submit]:hover {
     opacity: .8;
 }
 
+.form-container button {
+    float: right;
+    padding: 5px 10px;
+    background-color: var(--white);
+    color: var(--main-color);
+    border: double 3px var(--main-color);
+    font-weight: bold;
+}
+
+.form-container button:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
 
 @media screen and (max-width: 768px) {
     .product-content {
@@ -1705,6 +1719,18 @@ input[type=submit]:hover {
     color: var(--white);
     font-size: 1.5rem;
     border-radius: 6px;
+}
+
+.cart-error {
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.cart-error h1 {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: var(--main-color);
 }
 
 
