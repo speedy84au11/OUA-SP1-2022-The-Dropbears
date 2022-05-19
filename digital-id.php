@@ -18,14 +18,11 @@
                 <div class="d-id-g1"> <?php 
                 
                     if ($_SESSION['img'] != NULL) { ?> 
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
+                        <img class="id-logo" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
                     } else {
-                        ?> <img src="./img/alternative_user.jpg" title="description"></img> <?php
-                    }?><?php 
+                        ?> <img class="id-logo" src="./img/alternative_user.jpg" title="description"></img> <?php
+                    }?>
                     
-                    if ($_SESSION['gender_orientation'] != "heterosexual") { ?>
-                        <div class="rainbow"><span>LGBTQ+</span></div> <?php 
-                    } ?>
                 </div>
                 <div class="d-id-g2">
                     <p><span>Name:</span><?php echo " " . $_SESSION['fname'] . " " . $_SESSION['mname'] . " " . $_SESSION['lname']; ?></p>
@@ -34,15 +31,19 @@
                     <p><span>Location:</span><?php echo " " . $_SESSION['state']; ?></p>
                     <p><span>Id Number:</span><?php echo " " . $_SESSION['u_id']; ?></p>
                     <p><span>Centrelnk CRN:</span><?php echo " " . $_SESSION['centerlink_crn']; ?></p>
-                    <p><span>Expiry:</span><?php echo " " . $_SESSION['dob']; ?></p>
+                    <p><span>Expiry:</span><?php echo " " . $_SESSION['dob']; ?></p>    
                </div> <?php
+               
+               if ($_SESSION['gender_orientation'] != "heterosexual") { ?>
+                <img class="rainbow" src="img/rainbow.jpg"></img> <?php 
+            } 
 
             } else if (isset($_SESSION['s_id'])) { ?>
                 <div class="d-id-g1"> <?php 
                     if ($_SESSION['img'] != NULL) { ?> 
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
+                        <img class="id-logo" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['img']); ?>" title="description"></img> <?php
                     } else {
-                        ?> <img src="./img/alternative_user.jpg" title="description"></img> <?php
+                        ?> <img class="id-logo" src="./img/alternative_user.jpg" title="description"></img> <?php
                     }?>
             </div>
 

@@ -3,7 +3,7 @@
 <!-- =========================== Insert into cart table ========================= -->
 
 <?php
-
+ 
 if(isset($_POST['add-cart'])) {  
 
     $productId = $_POST['pid'];
@@ -96,14 +96,9 @@ if(isset($_POST['add-cart'])) {
     } else { ?>
         <div class="cart-error">
             <h1>Must be signed in to add to cart</h1>
-        </div>
-     <?php   
+        </div> <?php   
     }
-
-    
-        
-    
-    }    
+}    
 ?>
 
  <!-- =========================== Retrieve data from cart table ========================= -->
@@ -124,11 +119,13 @@ if(isset($_POST['add-cart'])) {
             } 
 
             $total ="0.00";
+  
             foreach($carts as $cart) {
                     $cartPrice = $cart['price'];
                     $cartName = $cart['product_name'];
                     $cartImg = $cart['img'];
                     $cartId = $cart['id'];
+
 
                 if ( $cart['buyer_id'] == $_SESSION['u_id']) { ?>
                     <div class="cart-item">
@@ -145,7 +142,7 @@ if(isset($_POST['add-cart'])) {
                             
                         </div>
                         
-                    </div> <?php
+                    </div> <?php  
                 }   else if ( $cart['buyer_id'] == $_SESSION['s_id']) { ?>
                     <div class="cart-item">
                         <img src="data:image/jpeg;base64,<?php echo base64_encode($cartImg); ?>" title="No Image"></img>
@@ -159,8 +156,8 @@ if(isset($_POST['add-cart'])) {
                             </form>
                             <?php $total = $total + $cartPrice; ?> 
                         </div>
-                    </div> <?php
-                }
+                    </div> <?php 
+                }   
             }?>
         </div>
     </div>
@@ -170,7 +167,8 @@ if(isset($_POST['add-cart'])) {
     </div>
     
     <div class="cart-total">
-        <a class="remove-cart1" href="shop.php">Coninue Shopping</a> 
+        <a class="remove-cart1" href="shop.php">Continue Shopping</a> 
         <a class="remove-cart1" href="checkout.php">Checkout</a> 
-    </div>
-<?php   include("./inc/footer.php");  ?>
+    </div> 
+  
+<?php include("./inc/footer.php");  ?>

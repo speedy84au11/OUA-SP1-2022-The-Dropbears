@@ -8,7 +8,7 @@
                 <!-- Content for the help buttons -->
                 <section class="objective-content">
                     <p class="small-heading">Our Service</p>
-                    <h4>Our Main Focus</h4>
+                    <h4>Select Option</h4>
 
                     <div class="help-buttons-wrapper">
                         <div class="can-content">

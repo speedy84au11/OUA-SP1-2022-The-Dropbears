@@ -86,6 +86,7 @@ if (isset($_POST['login-submit'])) {
     <script src="https://kit.fontawesome.com/b4eff55874.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/icon1.jpg">
     <title>The Connected App</title>
 </head>
 <body onload=maintainColor()>
@@ -142,7 +143,7 @@ if (isset($_POST['login-submit'])) {
             <!--Logo bar -->
             <div class="logo-bar">
                 <!-- Logo image -->
-                <a href="index.php"> <img src="./img/banner1.jpg" alt=""></a>
+                <a href="index.php"> <img src="./img/banner2.jpg" alt=""></a>
             </div> <!--logo-bar -->
 
             <!--Menu bar-->
