@@ -239,8 +239,8 @@ if(isset($_POST['submit'])) {
                         </div>
                         <div class="input-column">
                             <select id="country" name="country" value="<?php echo $country; ?>" required>
-                                <option value="aus">Australia</option>
-                                <option value="nz">New Zealand</option>
+                                <option value="australia">Australia</option>
+                                <option value="new zealand">New Zealand</option>
                             </select>
                         </div>
                     </div>

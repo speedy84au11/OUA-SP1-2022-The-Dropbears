@@ -1,7 +1,6 @@
 <?php   include("./inc/header.php");  ?>
 
 <div class="report-wrapper">
-    
     <section class="report-top">
         <ul class="breadcrumb">
             <li><a href="index.php">Home/</a></li>
@@ -23,12 +22,11 @@
             </div>
             <div class="input-column">
                 <select id="country" name="country" required>
-                    <option value="nsw">Ausrtralia</option>
-                    <option value="qld">New Zealand</option>
+                    <option value="Australia">Australia</option>
+                    <option value="New Zealand">New Zealand</option>
                 </select>
             </div>
         </div>
-
 
         <!-- State input -->
         <div class="row">
@@ -51,7 +49,7 @@
         <!-- Gender input -->
         <div class="row">
             <div class="label-column">
-                <label for="gender">Country</label>
+                <label for="gender">Gender</label>
             </div>
             <div class="input-column">
                 <select id="gender" name="gender" required>
@@ -62,20 +60,20 @@
             </div>
         </div>
 
-        <!-- Country input -->
+        <!-- age input -->
         <div class="row">
             <div class="label-column">
                 <label for="age">Age</label>
             </div>
             <div class="input-column">
                 <select id="age" name="age" required>
-                    <option value="18-under">18 and Under</option>
+                    <option value="01-18">18 and Under</option>
                     <option value="19-29">19 to 29</option>
                     <option value="30-39">30 to 39</option>
                     <option value="40-49">40 to 49</option>
-                    <option value="50 to 59">50 to 59</option>
+                    <option value="50-59">50 to 59</option>
                     <option value="60-69">60 to 69</option>
-                    <option value="70-120">70 to 110</option>
+                    <option value="70-99">70 to 99</option>
                 </select>
             </div>
         </div>
@@ -83,7 +81,7 @@
         <!-- Gender input -->
         <div class="row">
             <div class="label-column">
-                <label for="gender-orientation">Country</label>
+                <label for="gender-orientation">Gender Orientation</label>
             </div>
             <div class="input-column">
                 <select id="gender-orientation" name="gender-orientation" required>
@@ -96,13 +94,8 @@
 
         <br>
         <div class="row">
-            <input type="submit" value="submit" name="submit">
+            <input type="submit" value="submit" name='report-submit'>
         </div>
-
-
-
-
-
     </form>              
 </div>
 
